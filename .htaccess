@@ -1,0 +1,12 @@
+RewriteEngine   On
+
+RewriteBase     /
+
+RewriteRule     ^posts/?$       /app/pages/posts.php                        [L]
+RewriteRule     ^posts/(.+)/?$  /app/pages/posts.php?title=$1               [L]
+
+RewriteRule     ^about/?$       /app/pages/posts.php?title=about            [L]
+RewriteRule     ^showcase/?$    /app/pages/posts.php?title=showcase         [L]
+RewriteRule     ^index/?$       /app/pages/posts.php?title=index            [L]
+
+RewriteRule     ^(/)?$          /app/pages/posts.php?title=index            [L]
