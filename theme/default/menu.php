@@ -1,0 +1,2 @@
+ <header><a href="<?php echo(config::settings('blog.url') . "/index"); ?>">HOME</a> - <a href="<?php echo(config::settings('blog.url') . "/posts"); ?>">BLOG</a> - <a href="<?php echo(config::settings('blog.url') . "/showcase"); ?>">SHOWCASE</a> - <a href="<?php echo(config::settings('blog.url') . "/about"); ?>">ABOUT</a></header>
+       
