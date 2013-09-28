@@ -2,7 +2,9 @@
 
 Bloqu is meant as  a lightweight and easy to customize blogging system.
 
-All the features can be summarized in one sentence: "Delivering markdown files to the user with a HTML template around it."
+##Features
+- Delivering markdown files to the browser with a HTML template around it.
+- Default disqus support integrated.
 
 ##Todo's
 1. Create a customizable web interface for adding (and writing) blog posts.
