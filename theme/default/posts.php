@@ -14,7 +14,7 @@ require_once('../posts.php');
         {
             $post = posts::get_post($_GET['title']);
          
-            if ($post->title == null) :
+            if ($post == null) :
 				require_once('404.php');
 
             else :

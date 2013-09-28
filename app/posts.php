@@ -69,6 +69,10 @@ class posts
     {
 		$postsPath = config::settings('posts.path');
         $file = glob($_SERVER['DOCUMENT_ROOT'] . $postsPath . '*_' . $name . '.md');
+		
+		if ($file == null) : 
+			return null;
+		endif;
         
         $handle = fopen($file[0], 'r');
         $filecontent = fread($handle, filesize($file[0]));
