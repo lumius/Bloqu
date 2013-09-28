@@ -18,7 +18,14 @@ require_once('../posts.php');
         if(array_key_exists('title', $_GET))
         {
             $post = posts::get_post($_GET['title']);
-            ?>
+         
+            if ($post->title == null) : ?>
+        
+            <h1>404 error :'(</h1>
+            <p><b>Sadly this means the page you were looking for doesn't exist :(</b></p>
+            <hr />
+            
+            <?php else : ?>
         
             <h1><?php echo($post->title);?></h1>
             <span><?php echo($post->date); ?></span>
@@ -26,6 +33,7 @@ require_once('../posts.php');
             <hr />
         
             <?php
+            endif;
         }
         else
         {
