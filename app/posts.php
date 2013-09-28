@@ -6,14 +6,15 @@
  * Copyright (C) by Corstian Boerman (http://corstianboerman.com)
  */
 
-include_once('parsedown.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '\lib\parsedown\parsedown.php');
 
 class posts
 {
     static function list_posts ()
     {
-        $filelist = glob($_SERVER['DOCUMENT_ROOT'] . '\posts\*.md');
-        $excludelist = glob($_SERVER['DOCUMENT_ROOT'] . '\posts\_*.md');
+		$postsPath = config::settings('posts.path');
+        $filelist = glob($_SERVER['DOCUMENT_ROOT'] . $postsPath . '*.md');
+        $excludelist = glob($_SERVER['DOCUMENT_ROOT'] . $postsPath . '_*.md');
         
         $blogfiles = array_diff($filelist, $excludelist);
         
@@ -22,11 +23,13 @@ class posts
     
     static function count_posts()
     {
-        return count(glob($_SERVER['DOCUMENT_ROOT'] . '\posts\*.md'));
+		$postsPath = config::settings('posts.path');
+        return count(glob($_SERVER['DOCUMENT_ROOT'] . $postsPath . '*.md'));
     }
     
     static function get_posts($count = 0, $page = 1)
     {
+	$postsPath = config::settings('posts.path');
         if ($count == 0)
             $count = 10;
         
@@ -47,7 +50,7 @@ class posts
             
             $arr = explode('_', $filename);
                         
-            $post->date = str_replace($_SERVER['DOCUMENT_ROOT'] . '\\posts\\', '', $arr[0]);
+            $post->date = str_replace($_SERVER['DOCUMENT_ROOT'] . $postsPath, '', $arr[0]);
             $post->url = config::settings('blog.url') . '/posts/' . str_replace('.md', '', $arr[1]);
             
             $content = Parsedown::instance()->parse($filecontent);
@@ -64,7 +67,8 @@ class posts
     
     static function get_post($name)
     {
-        $file = glob($_SERVER['DOCUMENT_ROOT'] . '/posts/*_' . $name . '.md');
+		$postsPath = config::settings('posts.path');
+        $file = glob($_SERVER['DOCUMENT_ROOT'] . $postsPath . '*_' . $name . '.md');
         
         $handle = fopen($file[0], 'r');
         $filecontent = fread($handle, filesize($file[0]));
@@ -74,7 +78,7 @@ class posts
         
         $arr = explode('_', $file[0]);
         
-        $post->date = str_replace($_SERVER['DOCUMENT_ROOT'] . '/posts/', '', $arr[0]);
+        $post->date = str_replace($_SERVER['DOCUMENT_ROOT'] . $postsPath, '', $arr[0]);
         $post->url = config::settings('blog.url') . '/posts/' . str_replace('.md', '', $arr[1]);
             
         $content = Parsedown::instance()->parse($filecontent);
