@@ -1,1 +1,1 @@
-<footer>Copyright &copy; by Corstian Boerman</footer>
+<footer><?php echo(config::settings('blog.footer')); ?></footer>
