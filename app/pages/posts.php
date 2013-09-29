@@ -3,6 +3,7 @@ require_once('../config.php');
 require_once('../theming.php');
 $themeUrl = $_SERVER['DOCUMENT_ROOT'] . '\\theme\\' . config::settings('blog.theme');
 require_once('../posts.php');
+require_once($themeUrl . '\config.php');
 ?>
 
 <!DOCTYPE html>

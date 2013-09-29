@@ -1,0 +1,1 @@
+<footer><?php //echo(config::settings('blog.footer')); ?></footer>
